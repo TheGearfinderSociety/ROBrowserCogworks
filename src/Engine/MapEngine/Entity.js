@@ -141,6 +141,10 @@ define(function (require) {
 				}
 			}
 			EntityManager.add(entity);
+			// Apply bodystyle from spawn packet if present
+			if (pkt.body !== undefined && pkt.body > 0) {
+				entity.bodystyle = pkt.body;
+			}
 		}
 
 		if (pkt.effectState === StatusState.EffectState.FALCON && ([11, 4012, 4034, 4056, 4062, 4098, 4257].includes(pkt.job))) {
@@ -1229,7 +1233,7 @@ define(function (require) {
 			case 10: break; // LOOK_BODY ??
 			case 11: break; // LOOK_RESET_COSTUMES (Makes all headgear sprites on player vanish when activated.)
 			case 12: entity.robe = pkt.value; break;
-			case 13: break; // LOOK_FLOOR ??
+			case 13: entity.bodystyle = pkt.value; break; // LOOK_FLOOR ??
 			case 14: break; // LOOK_BODY2 ??
 		}
 	}

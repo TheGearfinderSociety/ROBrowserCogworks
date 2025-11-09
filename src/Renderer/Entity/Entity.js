@@ -159,6 +159,7 @@ define( function( require )
 	Entity.prototype._sex         = -1;
 	Entity.prototype._job         = -1;
 	Entity.prototype._bodypalette = 0;
+	Entity.prototype._bodystyle   = 0;
 	Entity.prototype._head        = -1;
 	Entity.prototype._headpalette = 0;
 	Entity.prototype._weapon      = -1;
@@ -269,6 +270,10 @@ define( function( require )
 						play:  true,
 						repeat: unit.state !== 1
 					});
+					break;
+
+				case 'body':
+					this.bodystyle = unit.body;
 					break;
 
 				case 'action':

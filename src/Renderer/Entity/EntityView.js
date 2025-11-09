@@ -140,9 +140,10 @@ define(function( require )
 		this.xSize = this.ySize = DB.isBaby(job) ? 4 : 5;
 
 
-		this.files.shadow.size = job in ShadowTable ? ShadowTable[job] : 1.0;
-		path                   = this.isAdmin ? DB.getAdminPath(this._sex) : DB.getBodyPath( job, this._sex );
-		Entity                 = this.constructor;
+		this.files.shadow.size 	= job in ShadowTable ? ShadowTable[job] : 1.0;
+		var spriteJob 			= this.costume ? job : ((this._bodystyle > 0) ? this._bodystyle : job);
+		path 					= this.isAdmin ? DB.getAdminPath(this._sex) : DB.getBodyPath(spriteJob, this._sex, null, spriteJob);
+		Entity					= this.constructor;
 
 		// Define Object type based on its id
 		if (this.objecttype === Entity.TYPE_UNKNOWN) {
@@ -234,6 +235,23 @@ define(function( require )
 		this.files.body.pal = DB.getBodyPalPath( this._job, this._bodypalette, this._sex);
 	}
 
+	/**
+	 * Update body style
+	 *
+	 * @param {number} body style number
+	 */
+	function UpdateBodyStyle( style )
+	{
+		this._bodystyle = style;
+
+		// Wait body to be loaded
+		if (this._job === -1) {
+			return;
+		}
+
+		// Trigger body reload with new bodystyle
+		UpdateBody.call(this, this._job);
+	}
 
 	/**
 	 * Update head
@@ -395,6 +413,11 @@ define(function( require )
 		Object.defineProperty(this, 'bodypalette', {
 			get: function(){ return this._bodypalette; },
 			set: UpdateBodyPalette
+		});
+
+		Object.defineProperty(this, 'bodystyle', {
+			get: function(){ return this._bodystyle; },
+			set: UpdateBodyStyle
 		});
 
 		Object.defineProperty(this, 'head', {

@@ -4958,6 +4958,9 @@ define(['Utils/BinaryWriter', './PacketVerManager', 'Utils/Struct', 'Core/Config
 		this.accessory3 = fp.readShort();
 		this.headpalette = fp.readShort();
 		this.bodypalette = fp.readShort();
+		if (PACKETVER.value >= 20141022) {
+			this.body = fp.readShort();
+		}
 		this.headDir = fp.readShort();
 		this.GUID = fp.readULong();
 		this.GEmblemVer = fp.readShort();
@@ -4990,6 +4993,9 @@ define(['Utils/BinaryWriter', './PacketVerManager', 'Utils/Struct', 'Core/Config
 		this.accessory3 = fp.readShort();
 		this.headpalette = fp.readShort();
 		this.bodypalette = fp.readShort();
+		if (PACKETVER.value >= 20141022) {
+			this.body = fp.readShort();
+		}
 		this.headDir = fp.readShort();
 		this.GUID = fp.readULong();
 		this.GEmblemVer = fp.readShort();
@@ -5055,6 +5061,9 @@ define(['Utils/BinaryWriter', './PacketVerManager', 'Utils/Struct', 'Core/Config
 		this.accessory3 = fp.readShort();
 		this.headpalette = fp.readShort();
 		this.bodypalette = fp.readShort();
+		if (PACKETVER.value >= 20141022) {
+			this.body = fp.readShort();
+		}
 		this.headDir = fp.readShort();
 		this.GUID = fp.readULong();
 		this.GEmblemVer = fp.readShort();
