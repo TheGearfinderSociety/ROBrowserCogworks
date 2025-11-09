@@ -15266,7 +15266,7 @@ define(['Utils/BinaryWriter', './PacketVerManager', 'Utils/Struct', 'Core/Config
 		this.attackMT = fp.readULong();		// attackMT
 	};
 	PACKET.ZC.USESKILL_ACK3.size = 32;
-
+	
 	/**
 	 * Export
 	 */
